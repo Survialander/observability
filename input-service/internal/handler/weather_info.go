@@ -61,6 +61,7 @@ func (h *WeatherInfoHandler) GetWeatherInfo(w http.ResponseWriter, r *http.Reque
 
 	if response.StatusCode == http.StatusNotFound {
 		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte(" can not find zipcode"))
 		return
 	}
 
@@ -70,6 +71,7 @@ func (h *WeatherInfoHandler) GetWeatherInfo(w http.ResponseWriter, r *http.Reque
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
 		return
 	}
 
